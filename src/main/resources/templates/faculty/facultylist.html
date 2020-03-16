@@ -1,0 +1,38 @@
+<html xmlns:th="https://www.thymeleaf.org">
+	<div th:replace="fragment/header :: header">
+	
+	</div>
+	<div class="container">
+		<h3 style="margin-top: 10px">Faculty Lists</h3>
+		<div style="margin-top: 10px"></div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Faculty Name</th>
+					<th scope="col">Phone Number</th>
+					<th scope="col">Email</th>
+					<th scope="col">Office Location</th>
+					<th scope="col">Advisee</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="text-align: center" colspan="9" 
+						th:if="${#lists.size(facultys) == 0}" 
+						th:text="'No Data To Display'" />
+				</tr>
+				<tr th:each="faculty, iter: ${facultys}">
+					<th scope="row" th:text="${iter.count}" />
+					<td scope="row" th:text="${faculty.fullName}"></td>
+					<td scope="row" th:text="${faculty.phoneNumber}"></td>
+					<td scope="row" th:text="${faculty.emailAddress}"></td>
+					<td scope="row" th:text="${faculty.officeLocation}"></td>
+					<td>
+						<p th:each="student: ${faculty.students}" th:text="${student.studentNumber} + ' - ' + ${student.fullName}" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</html>

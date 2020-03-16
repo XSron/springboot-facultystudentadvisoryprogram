@@ -1,0 +1,61 @@
+<html xmlns:th="https://www.thymeleaf.org">
+	<div th:replace="fragment/header :: header">
+	
+	</div>
+	<div class="container">
+		<h3 style="margin-top: 10px"> 
+			Add New Student
+		</h3>
+		<form th:action="@{/student/addstudent}" th:object="${student}" method="post">
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Error Full Name</label>
+				    <label for="fullname">* Fullname</label>
+				    <input required type="text" class="form-control" id="fullname" th:field="*{fullName}" th:value="*{fullName}">
+				 </div>			
+			 </div>
+			 <div class="row">
+			 	<div class="form-group col-md-4">
+				 	<label th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}">Error Student Number</label>
+				    <label for="studentNumber">* Student ID Number</label>
+				    <input required type="text" class="form-control" id="studentNumber" th:field="*{studentNumber}" th:value="*{studentNumber}">
+				 </div>
+				 <div class="form-group col-md-4">
+				 	<label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Error Phone Number</label>
+				    <label for="phoneNumber">Phone Number</label>
+				    <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" th:value="*{phoneNumber}">
+				 </div>
+				 <div class="form-group col-md-4">
+				 	<label th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Error Email Address</label>
+				    <label for="emailAddress">* Email Address</label>
+				    <input required type="email" class="form-control" id="emailAddress" th:field="*{emailAddress}" th:value="*{emailAddress}">
+				 </div>
+			  </div>
+			  <div class="row">
+			  	<div class="form-group col-md-4">
+				 	<label th:if="${#fields.hasErrors('dateOfAdmission')}" th:errors="*{dateOfAdmission}">Error Date of Admission</label>
+				    <label for="dateOfAdmission">* Date of Admission</label>
+				    <input required type="date" class="form-control" id="dateOfAdmission" th:field="*{dateOfAdmission}" th:value="*{dateOfAdmission}">
+				 </div>
+				<div class="form-group col-md-4">
+				  	<label>* Faculty Advisor</label>
+				 	<select required th:field="*{faculty.facultyId}" class="form-control">
+				 		<option th:each="faculty : ${facultys}" th:value="${faculty.facultyId}" th:text="${faculty.fullName}" />
+				 	</select>
+				 </div>
+				 <div class="form-group col-md-4">
+				 	<label th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}">Error CGPA</label>
+				    <label for="cgpa">CGPA</label>
+				    <input required type="number" step="0.01" class="form-control" id="cgpa" th:field="*{cgpa}" th:value="*{cgpa}">
+				 </div>
+			</div>
+			  <div class="row">
+			  	<div class="form-group col-md-4">
+					<button type="submit" class="btn btn-primary">Register Student Advisee</button>
+				  </div>
+			  </div>
+			  
+		</form>
+	</div>
+</html>

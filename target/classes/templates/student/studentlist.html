@@ -1,0 +1,43 @@
+<html xmlns:th="https://www.thymeleaf.org">
+	<div th:replace="fragment/header :: header">
+	
+	</div>
+	<div class="container">
+		<h3 style="margin-top: 10px">Student Lists</h3>
+		<div>
+			<a href="../student/addstudent" class="btn btn-primary">Add New Student</a>
+		</div>
+		<div style="margin-top: 10px"></div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Student ID Number</th>
+					<th scope="col">Full Name</th>
+					<th scope="col">Phone Number</th>
+					<th scope="col">Email</th>
+					<th scope="col">Date of Admission</th>
+					<th scope="col">CGPA</th>
+					<th scope="col">Faculty Advisor</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="text-align: center" colspan="9" 
+						th:if="${#lists.size(students) == 0}" 
+						th:text="'No Data To Display'" />
+				</tr>
+				<tr th:each="student, iter: ${students}">
+					<th scope="row" th:text="${iter.count}" />
+					<td scope="row" th:text="${student.studentNumber}"></td>
+					<td scope="row" th:text="${student.fullName}"></td>
+					<td scope="row" th:text="${student.phoneNumber}"></td>
+					<td scope="row" th:text="${student.emailAddress}"></td>
+					<td scope="row" th:text="${student.dateOfAdmission}"></td>
+					<td scope="row" th:text="${student.cgpa}"></td>
+					<td scope="row" th:text="${student.faculty.fullName}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</html>
